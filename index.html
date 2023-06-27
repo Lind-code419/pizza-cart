@@ -26,7 +26,7 @@
 
                 <p>This pizza has all the flavour you want</p>
                 <div>
-                    <button><b>Add to cart</b></button>
+                    <button><b><a href="#cart">Add to cart</a></b></button>
                 </div>
 
             </section>
@@ -38,7 +38,7 @@
                 </div>
                 <p>This will blow your mind!</p>
                 <div>
-                    <button><b>Add to cart</b></button>
+                    <button><b><a href="#cart">Add to cart</a></b></button>
                 </div>
 
             </section>
@@ -50,7 +50,7 @@
                 </div>
                 <p>You might never feel hungry again!</p>
                 <div>
-                    <button><b>Add to cart</b></button>
+                    <button><b><a href="#cart">Add to cart</a></b></button>
                 </div>
 
             </section>
@@ -63,25 +63,47 @@
                 <h3>2 Anthos Centre</h3>
             </div>
         </section>
-        <section class="shopping-cart" x-data="{total : 0, smalltotal : 0, mediumtotal : 0, largetotal : 0, show : false}">
+        <section id="cart" class="shopping-cart" x-data="{paytotal : 0, total : 0, smalltotal : 0, mediumtotal : 0, largetotal : 0, show : false, payment : 0,
+             calculateTotal(count,type) {
+                if (type == 'small') {
+                    return 69*count;
+                }
+                if (type == 'medium') {
+                    return 89*count;
+                };
+                return 139 * count;
+            },
+            enoughMoney(payment,total) {
+                if (payment >= total) {
+                    return 1;
+                }
+                else if ((payment < total) && payment > 0) {
+                    return 2;
+                }
+            },
+            clearAll() {
+                smalltotal, mediumtotal, largetotal =0;
+            }
+            
+    }">
             <div>
                 <h2>Shopping Cart:</h2>
                 <div>Number of small pizzas:</div>
                 <div x-data="{count : 0 }">
                     <p x-text="count"></p>
                     <div>
-                        <p x-text="smalltotal = (69.00 * count)"></p>
+                        <p x-text="smalltotal = calculateTotal(count, 'small')"></p>
                     </div>
 
                     <button @click="count++">+</button>
-                    <button @click="if (count > 0) {count--}; smalltotal = 69 * count">-</button>
+                    <button @click="if (count > 0) {count--}">-</button>
 
                 </div>
                 <div>Number of medium pizzas:</div>
                 <div x-data="{count : 0 }">
                     <p x-text="count"></p>
                     <div>
-                        <p x-text="mediumtotal = 89.00 * count"></p>
+                        <p x-text="mediumtotal = calculateTotal(count, 'medium')"></p>
                     </div>
 
                     <button @click="count++">+</button>
@@ -94,7 +116,7 @@
             <div x-data="{count : 0 }">
                 <p x-text="count"></p>
                 <div>
-                    <p x-text="largetotal = 139.00 * count"></p>
+                    <p x-text="largetotal = calculateTotal(count, 'large')"></p>
                 </div>
                 <button @click="count++">+</button>
                 <button @click="if (count > 0) {count--}">-</button>
@@ -103,18 +125,27 @@
             <hr>
             
             <b>Total:</b>
-            <p x-text="smalltotal + mediumtotal + largetotal"></p>
-            <b>.00</b>
+            <p x-text="total = smalltotal + mediumtotal + largetotal"><b>.00</b></p>
+            
 
-            <template x-if="((smalltotal + mediumtotal + largetotal) > 0)">
+            <template x-if="((smalltotal || mediumtotal || largetotal) > 0)">
                 <button @click="show = !show  "><b>Checkout</b></button>
             </template>
 
             <template x-if="(show == true)">
-                <input type="text">
+                
+                <input type="text" x-model="payment">
+                
+            </template>
+
+            <template x-if="(show == true)">
+                <button @click ="paytotal = enoughMoney(payment, total); console.log(paytotal)">Pay now</button>  
             </template>
 
             </div>
+            
+            <p x-show="paytotal == 1;">Enjoy your pizza!</p>
+            <p x-show="paytotal == 2">Not enough money!</p>
 
         </section>
     </section>

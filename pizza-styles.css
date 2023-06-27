@@ -1,0 +1,90 @@
+body {
+    background-color: goldenrod;
+    font-family: 'Times New Roman', Times, serif;
+    text-align: center;
+    text-decoration-color: black;
+    
+
+}
+
+h1 {
+	font-size: 60px;
+}
+
+h2 {
+	font-size: 40px;
+}
+
+h3 {
+	font-size: 30px;
+}
+
+.box {
+	margin: 0.75em;
+    padding: 0.5em;
+    flex: 1;
+    border: 2px solid black;
+    border-radius: 0.5em;
+}
+
+
+.small {
+    background-color: red;
+    
+
+}
+
+.medium {
+    background-color: white;
+   
+
+}
+.large {
+    background-color: #089200;
+    
+
+}
+
+.image {
+    width: 100px;
+    height: auto;
+
+}
+
+.contact-details {
+    background-color: cyan;
+    margin: 0.5em;
+    padding: 0.25em;
+    border: 2px solid black;
+    border-radius: 0.5em;
+
+}
+
+.shopping-cart {
+    background-color: yellow;
+    margin: 0.5em;
+    padding: 0.25em;
+    border: 2px solid black;
+    border-radius: 0.5em;
+
+}
+
+.address {
+	flex: 1;
+ }
+
+.outer-border {
+    border: 3px solid black;
+    border-radius: 0.5em;
+    padding: 0.5em;
+
+}
+
+
+@media (min-width: 768px) {
+    .pizza-styles1 {
+    display: flex;
+    border: 2px solid black;
+    border-radius: 0.5em;
+    }
+}

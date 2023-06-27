@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfect Pizza</title>
+    <link rel="stylesheet" href="pizza-styles.css">
+    <script src="//unpkg.com/alpinejs" defer></script>
+
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.0/dist/alpine.min.js" defer></script>
+
+    <section class="outer-border">
+        <h1 class="h1">Perfect Pizza</h1>
+        <section class="pizza-styles1">
+            <section class="box small">
+                <h2>Small Pizza</h2>
+                <img class="image" src="pizza1.png" alt="Regina">
+                <div>
+                    <h3>R 69-00 </h3>
+                </div>
+
+                <p>This pizza has all the flavour you want</p>
+                <div>
+                    <button><b>Add to cart</b></button>
+                </div>
+
+            </section>
+            <section class="box medium">
+                <h2>Medium Pizza</h2>
+                <img class="image" src="pizza2.png" alt="Hawaiian">
+                <div>
+                    <h3>R 89-00 </h3>
+                </div>
+                <p>This will blow your mind!</p>
+                <div>
+                    <button><b>Add to cart</b></button>
+                </div>
+
+            </section>
+            <section class="box large">
+                <h2>Large Pizza</h2>
+                <img class="image" src="pizza3.png" alt="Marghareta">
+                <div>
+                    <h3>R 139-00 </h3>
+                </div>
+                <p>You might never feel hungry again!</p>
+                <div>
+                    <button><b>Add to cart</b></button>
+                </div>
+
+            </section>
+        </section>
+        <section class="contact-details">
+            <h2>Contact details:</h2>
+            <h3>Contact us at 082 555 5925</h3>
+            <h3>email: orders@perfect-pizza.co.za</h3>
+            <div class="address">
+                <h3>2 Anthos Centre</h3>
+            </div>
+        </section>
+        <section class="shopping-cart" x-data="{total : 0, smalltotal : 0, mediumtotal : 0, largetotal : 0, show : false}">
+            <div>
+                <h2>Shopping Cart:</h2>
+                <div>Number of small pizzas:</div>
+                <div x-data="{count : 0 }">
+                    <p x-text="count"></p>
+                    <div>
+                        <p x-text="smalltotal = (69.00 * count)"></p>
+                    </div>
+
+                    <button @click="count++">+</button>
+                    <button @click="if (count > 0) {count--}; smalltotal = 69 * count">-</button>
+
+                </div>
+                <div>Number of medium pizzas:</div>
+                <div x-data="{count : 0 }">
+                    <p x-text="count"></p>
+                    <div>
+                        <p x-text="mediumtotal = 89.00 * count"></p>
+                    </div>
+
+                    <button @click="count++">+</button>
+                    <button @click="if (count > 0) {count--}">-</button>
+                </div>
+
+
+            </div>
+            <div>Number of large pizzas:</div>
+            <div x-data="{count : 0 }">
+                <p x-text="count"></p>
+                <div>
+                    <p x-text="largetotal = 139.00 * count"></p>
+                </div>
+                <button @click="count++">+</button>
+                <button @click="if (count > 0) {count--}">-</button>
+
+            </div>
+            <hr>
+            
+            <b>Total:</b>
+            <p x-text="smalltotal + mediumtotal + largetotal"></p>
+            <b>.00</b>
+
+            <template x-if="((smalltotal + mediumtotal + largetotal) > 0)">
+                <button @click="show = !show  "><b>Checkout</b></button>
+            </template>
+
+            <template x-if="(show == true)">
+                <input type="text">
+            </template>
+
+            </div>
+
+        </section>
+    </section>
+    </section>
+
+
+
+</body>
+
+</html>
